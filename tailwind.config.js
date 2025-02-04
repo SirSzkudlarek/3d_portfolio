@@ -14,6 +14,9 @@ export default {
         blue: {
           500: '#2b77e7',
         },
+        green: {
+          bg: '#32463a',
+        },
       },
       fontFamily: {
         worksans: ['Work Sans', 'sans-serif'],
