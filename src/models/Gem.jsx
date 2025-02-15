@@ -2,39 +2,44 @@ import { useEffect, useRef } from 'react';
 import { useAnimations, useGLTF } from '@react-three/drei';
 import stoneGemScene from '../assets/3d/gem_stone.glb';
 import waterGemScene from '../assets/3d/gem_blue.glb';
+import fireGemScene from '../assets/3d/gem_red.glb';
 
 const Gem = () => {
   const stoneGemRef = useRef();
   const waterGemRef = useRef();
+  const fireGemRef = useRef();
   const { scene: stone_scene, animations: stone_animations } = useGLTF(stoneGemScene);
-  const { scene: water_scene, animations: water_animations } = useGLTF(waterGemScene);
-  const { actions } = useAnimations(stone_animations, stoneGemRef);
+  const { scene: water_scene } = useGLTF(waterGemScene);
+  const { scene: fire_scene, animations: fire_animations } = useGLTF(fireGemScene);
+  const { actions: stone_actions } = useAnimations(stone_animations, stoneGemRef);
+  const { actions: fire_actions } = useAnimations(fire_animations, fireGemRef);
 
   useEffect(() => {
-    actions['Armature|ArmatureAction.001'].play();
-  }, [actions]);
+    stone_actions['Armature|ArmatureAction.001'].play();
+    fire_actions['Take 001'].play();
+  }, [stone_actions, fire_actions]);
 
   const adjustGemForScreenSize = () => {
     let stoneGemScale = null;
+    let waterGemScale = null;
 
     if (window.innerWidth < 768) {
       stoneGemScale = [0.9, 0.9, 0.9];
     } else {
       stoneGemScale = [2, 2, 2];
+      waterGemScale = [100, 100, 100];
     }
-    return [stoneGemScale];
+    return [stoneGemScale, waterGemScale];
   };
 
-  const [stoneGem] = adjustGemForScreenSize();
-  console.log(water_scene);
+  const [stoneGem, waterGem] = adjustGemForScreenSize();
 
   useEffect(() => {
     if (water_scene) {
-      // Apply emissive properties to all the materials in water_scene
       water_scene.traverse((child) => {
         if (child.material) {
-          child.material.emissiveIntensity = 10; // Set emissive intensity
-          child.material.toneMapped = false; // Disable tone mapping
+          child.material.emissiveIntensity = 3;
+          child.material.toneMapped = false;
         }
       });
     }
@@ -42,11 +47,14 @@ const Gem = () => {
 
   return (
     <>
-      <mesh position={[60, 45, 5]} rotation={[0, -5.5, 0]} scale={stoneGem} ref={stoneGemRef}>
+      <mesh position={[60, 45, 0]} rotation={[0, -5.5, 0]} scale={stoneGem} ref={stoneGemRef}>
         <primitive object={stone_scene} />
       </mesh>
-      <mesh position={[-60, 55, 5]} rotation={[0, 0, 0]} scale={[100, 100, 100]} ref={waterGemRef}>
+      <mesh position={[0, 55, -50]} rotation={[0, 0, 0]} scale={waterGem} ref={waterGemRef}>
         <primitive object={water_scene} />
+      </mesh>
+      <mesh position={[-92.5, 55, -20]} rotation={[0, 0, 0]} scale={[15, 15, 15]} ref={fireGemRef}>
+        <primitive object={fire_scene} />
       </mesh>
     </>
   );

@@ -1,8 +1,7 @@
 import { Suspense, useState, useEffect, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import Loader from '../components/Loader';
-import Gem from '../models/Gem';
-import Moth from '../models/Moth';
+import Bat from '../models/Bat';
 import HomeInfo from '../components/HomeInfo';
 
 import sakura from '../assets/sakura.mp3';
@@ -40,22 +39,22 @@ const Home = () => {
     return [screenScale, screenPosition, rotation];
   };
 
-  const adjustMothForScreenSize = () => {
+  const adjustBatForScreenSize = () => {
     let screenScale, screenPosition;
-    let rotation = [0, -5.5, 0];
+    let rotation = [0, -5, 0];
 
     if (window.innerWidth < 768) {
-      screenScale = [1.5, 1.5, 1.5];
+      screenScale = [1, 1, 1.5];
       screenPosition = [0, -1.5, 0];
     } else {
-      screenScale = [0.7, 0.7, 0.7];
-      screenPosition = [0, -18, -30];
+      screenScale = [0.175, 0.175, 0.175];
+      screenPosition = [-1, -15, -30];
     }
     return [screenScale, screenPosition, rotation];
   };
 
   const [backgroundScale, backgroundPosition, backgroundRotation] = adjustBackgroundForScreenSize();
-  const [mothScale, mothPosition, mothRotation] = adjustMothForScreenSize();
+  const [batScale, batPosition, batRotation] = adjustBatForScreenSize();
 
   return (
     <section className="w-full h-screen relative bg-green-bg">
@@ -77,7 +76,7 @@ const Home = () => {
             setIsRotating={setIsRotating}
             setCurrentStage={setCurrentStage}
           />
-          <Moth isRotating={isRotating} scale={mothScale} position={mothPosition} rotation={mothRotation} />
+          <Bat isRotating={isRotating} scale={batScale} position={batPosition} rotation={batRotation} />
         </Suspense>
       </Canvas>
 
