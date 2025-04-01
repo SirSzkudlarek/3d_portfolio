@@ -39,26 +39,15 @@ const Home = () => {
     return [screenScale, screenPosition, rotation];
   };
 
-  const adjustBatForScreenSize = () => {
-    let screenScale, screenPosition;
-    let rotation = [0, -5, 0];
-
-    if (window.innerWidth < 768) {
-      screenScale = [1, 1, 1.5];
-      screenPosition = [0, -1.5, 0];
-    } else {
-      screenScale = [0.175, 0.175, 0.175];
-      screenPosition = [-1, -15, -30];
-    }
-    return [screenScale, screenPosition, rotation];
-  };
+  const batRotation = [0, -5, 0];
+  const batScale = [0.175, 0.175, 0.175];
+  const batPosition = [-1, -15, -30];
 
   const [backgroundScale, backgroundPosition, backgroundRotation] = adjustBackgroundForScreenSize();
-  const [batScale, batPosition, batRotation] = adjustBatForScreenSize();
 
   return (
     <section className="w-full h-screen relative bg-green-bg">
-      <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
+      <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center max-w-[80%] mx-auto md:max-w-none mb:mx-0">
         {currentStage && <HomeInfo currentStage={currentStage} />}
       </div>
       <Canvas

@@ -19,20 +19,9 @@ const Gem = () => {
     fire_actions['Take 001'].play();
   }, [stone_actions, fire_actions]);
 
-  const adjustGemForScreenSize = () => {
-    let stoneGemScale = null;
-    let waterGemScale = null;
-
-    if (window.innerWidth < 768) {
-      stoneGemScale = [0.9, 0.9, 0.9];
-    } else {
-      stoneGemScale = [2, 2, 2];
-      waterGemScale = [100, 100, 100];
-    }
-    return [stoneGemScale, waterGemScale];
-  };
-
-  const [stoneGem, waterGem] = adjustGemForScreenSize();
+  const stoneGemScale = [2, 2, 2];
+  const waterGemScale = [100, 100, 100];
+  const fireGemScale = [15, 15, 15];
 
   useEffect(() => {
     if (water_scene) {
@@ -47,13 +36,13 @@ const Gem = () => {
 
   return (
     <>
-      <mesh position={[60, 45, 0]} rotation={[0, -5.5, 0]} scale={stoneGem} ref={stoneGemRef}>
+      <mesh position={[60, 45, 0]} rotation={[0, -5.5, 0]} scale={stoneGemScale} ref={stoneGemRef}>
         <primitive object={stone_scene} />
       </mesh>
-      <mesh position={[0, 55, -50]} rotation={[0, 0, 0]} scale={waterGem} ref={waterGemRef}>
+      <mesh position={[0, 55, -50]} rotation={[0, 0, 0]} scale={waterGemScale} ref={waterGemRef}>
         <primitive object={water_scene} />
       </mesh>
-      <mesh position={[-92.5, 55, -20]} rotation={[0, 0, 0]} scale={[15, 15, 15]} ref={fireGemRef}>
+      <mesh position={[-92.5, 55, -20]} rotation={[0, 0, 0]} scale={fireGemScale} ref={fireGemRef}>
         <primitive object={fire_scene} />
       </mesh>
     </>

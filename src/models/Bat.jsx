@@ -12,12 +12,12 @@ const Bat = ({ isRotating, ...props }) => {
     if (scene) {
       scene.traverse((child) => {
         if (child.material) {
-          child.material.emissiveIntensity = 1.5;
+          child.material.emissiveIntensity = 0.75;
           child.material.toneMapped = false;
         }
       });
 
-      let lightBrigther = new THREE.AmbientLight(0xffffff, 1.15);
+      let lightBrigther = new THREE.AmbientLight(0xffffff, 1.5);
       scene.add(lightBrigther);
 
       return () => {

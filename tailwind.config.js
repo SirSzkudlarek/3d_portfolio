@@ -17,6 +17,14 @@ export default {
         green: {
           bg: '#32463a',
         },
+        neon_green: {
+          300: '#c6ecbe',
+          500: '#268b6d',
+          800: '#265446',
+        },
+        neon_blue: {
+          300: '#40c9ff',
+        },
       },
       fontFamily: {
         worksans: ['Work Sans', 'sans-serif'],

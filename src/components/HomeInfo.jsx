@@ -1,43 +1,56 @@
 import { Link } from 'react-router-dom';
-import { arrow } from '../assets/icons';
+import { arrow, gem } from '../assets/icons';
 
 const InfoBox = ({ text, link, btnText }) => (
   <div className="info-box">
-    <p className="font-medium sm:text-xl text-center"></p>
-    {text}
-    <Link to={link} className="neo-brutalism-white neo-btn">
-      {btnText}
-      <img src={arrow} className="w-4 h-4 object-contain" />
-    </Link>
+    <div className="home-info-inner text-center px-5 pt-7 pb-10 md:px-10 md:pt-10 md:pb-10">
+      <p className="font-medium sm:text-xl"></p>
+      {text}
+      <Link to={link} className="neo-brutalism-white neo-btn">
+        {btnText}
+        <img src={arrow} className="w-4 h-4 object-contain" />
+      </Link>
+    </div>
   </div>
 );
 
 const renderContent = {
   1: (
-    <h1 className="sm:text-xl sm:leading-snug text-center neo-brutalism-blue py-4 px-8 text-white mx-5">
-      Hi, I am <span className="font-semibold">Damian</span>👋
-      <br />A Front-End Developer from Poland.
-    </h1>
+    <div className="home-info">
+      <div className="home-info-inner px-5 md:px-10 !py-5">
+        <div className="flex flex-row items-center justify-center gap-1 mx-auto mb-1">
+          <img src={gem} className="w-3 h-3 object-contain" />
+          <img src={gem} className="w-6 h-6 object-contain" />
+          <img src={gem} className="w-3 h-3 object-contain" />
+        </div>
+
+        <h1 className="sm:text-xl sm:leading-snug text-center text-white ">
+          Cześć, Mam na imię <span className="font-semibold">Damian</span> 👋
+          <br />
+          Jestem Front-End Developerem z Wrocławia.
+        </h1>
+      </div>
+    </div>
   ),
   2: (
     <InfoBox
-      text="Worked with many companies and picked up many skills along the way."
+      text="Poznaj mnie lepiej i dowiedz się więcej o moim doświadczeniu."
       link="/about"
-      btnText="Learn more"
+      btnText="Dowiedz się więcej"
     />
   ),
   3: (
     <InfoBox
-      text="Led multiple projects to success over the years. Curious about the impact?"
+      text="W tym miejscu poznasz moje projekty i zobaczyć co potrafię."
       link="/projects"
-      btnText="Visit my portfolio"
+      btnText="Odwiedź moje portfolio"
     />
   ),
   4: (
     <InfoBox
-      text="Need a project done or looking for a dev? I'm just a few keystrokes away."
+      text="Spodobała Ci się moje projekty albo chcesz poznać mnie bliżej? Wstarczy tylko kliknąć poniżej."
       link="/contact"
-      btnText="Let's talk"
+      btnText="Wyślij wiadomość"
     />
   ),
 };

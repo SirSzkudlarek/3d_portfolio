@@ -5,10 +5,11 @@ const CTA = () => {
   return (
     <section className="cta">
       <p className="cta-text">
-        Have a project in mind? <br className="sm:block hidden" /> Let's build something together!
+        Masz jakieś pytania?
+        <br className="sm:block hidden" /> Napisz do mnie, a z wielką chęcią odpowiem!
       </p>
       <Link to="/contact" className="btn">
-        Contact
+        Kontakt
       </Link>
     </section>
   );
