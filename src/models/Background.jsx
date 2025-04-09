@@ -69,6 +69,35 @@ const Background = ({ isRotating, setIsRotating, setCurrentStage, ...props }) =>
     }
   };
 
+  const handleTouchStart = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setIsRotating(true);
+
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    lastX.current = clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setIsRotating(false);
+  };
+
+  const handleTouchMove = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+
+    if (isRotating) {
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const delta = (clientX - lastX.current) / viewport.width;
+
+      backgroundRef.current.rotation.y += delta * 0.01 * Math.PI;
+      lastX.current = clientX;
+      rotationSpeed.current = delta * 0.01 * Math.PI;
+    }
+  };
+
   useEffect(() => {
     const canvas = gl.domElement;
     canvas.addEventListener('pointerdown', handlePointerDown);
@@ -76,6 +105,9 @@ const Background = ({ isRotating, setIsRotating, setCurrentStage, ...props }) =>
     canvas.addEventListener('pointermove', handlePointerMove);
     document.addEventListener('keydown', handleKeyDown);
     document.addEventListener('keyup', handleKeyUp);
+    canvas.addEventListener('touchstart', handleTouchStart);
+    canvas.addEventListener('touchend', handleTouchEnd);
+    canvas.addEventListener('touchmove', handleTouchMove);
     actions['Animation'].play();
 
     return () => {
@@ -84,6 +116,9 @@ const Background = ({ isRotating, setIsRotating, setCurrentStage, ...props }) =>
       canvas.removeEventListener('pointermove', handlePointerMove);
       document.removeEventListener('keydown', handleKeyDown);
       document.removeEventListener('keyup', handleKeyUp);
+      canvas.removeEventListener('touchstart', handleTouchStart);
+      canvas.removeEventListener('touchend', handleTouchEnd);
+      canvas.removeEventListener('touchmove', handleTouchMove);
     };
   }, [gl, handlePointerDown, handlePointerUp, handlePointerMove]);
 
@@ -100,8 +135,6 @@ const Background = ({ isRotating, setIsRotating, setCurrentStage, ...props }) =>
       const rotation = backgroundRef.current.rotation.y;
 
       const normalizedRotation = ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
-
-      console.log(normalizedRotation);
 
       // Set the current stage based on the island's orientation
       switch (true) {

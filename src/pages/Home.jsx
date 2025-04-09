@@ -46,8 +46,8 @@ const Home = () => {
   const [backgroundScale, backgroundPosition, backgroundRotation] = adjustBackgroundForScreenSize();
 
   return (
-    <section className="w-full h-screen relative bg-green-bg">
-      <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center max-w-[80%] mx-auto md:max-w-none mb:mx-0">
+    <section className="w-full h-screen max-h-screen relative bg-green-bg">
+      <div className="absolute top-16 lg:top-28 left-0 right-0 z-10 flex items-center justify-center max-w-[80%] mx-auto md:max-w-none mb:mx-0">
         {currentStage && <HomeInfo currentStage={currentStage} />}
       </div>
       <Canvas
