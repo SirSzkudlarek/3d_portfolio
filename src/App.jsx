@@ -8,7 +8,7 @@ console.log('App component loadedd');
 const App = () => {
   return (
     <main className="bg-gradient h-full">
-      <Router>
+      <Router basename="/3d_portfolio/">
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
