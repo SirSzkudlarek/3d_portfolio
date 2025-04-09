@@ -3,7 +3,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { Home, About, Projects, Contact } from './pages';
 import Navbar from './components/Navbar';
 
-console.log('App component loaded');
+console.log('App component loadedd');
 
 const App = () => {
   return (
