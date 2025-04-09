@@ -3,6 +3,8 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { Home, About, Projects, Contact } from './pages';
 import Navbar from './components/Navbar';
 
+console.log('App component loaded');
+
 const App = () => {
   return (
     <main className="bg-gradient h-full">
