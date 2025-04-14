@@ -3,7 +3,7 @@ import { arrow, gem } from '../assets/icons';
 
 const InfoBox = ({ text, link, btnText }) => (
   <div className="info-box">
-    <div className="home-info-inner text-center px-5 pt-7 pb-10 md:px-10 md:pt-10 md:pb-10">
+    <div className="home-info-inner text-center px-4 pt-7 pb-10 md:px-10 md:pt-10 md:pb-10">
       <p className="font-medium sm:text-xl"></p>
       {text}
       <Link to={link} className="neo-brutalism-white neo-btn">
