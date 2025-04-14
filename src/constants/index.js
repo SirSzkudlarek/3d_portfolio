@@ -1,6 +1,5 @@
 import { yuush } from '../assets/images';
 import {
-  car,
   contact,
   css,
   git,
