@@ -4,17 +4,18 @@ import Loader from '../components/Loader';
 import Bat from '../models/Bat';
 import HomeInfo from '../components/HomeInfo';
 
-import sakura from '../assets/sakura.mp3';
+import backgroundMusic from '../assets/background.mp3';
 import { soundoff, soundon } from '../assets/icons';
 import Background from '../models/Background';
 
 const Home = () => {
-  const audioRef = useRef(new Audio(sakura));
-  audioRef.current.volume = 0.4;
+  const audioRef = useRef(new Audio(backgroundMusic));
+  audioRef.current.volume = 0.3;
   audioRef.current.loop = true;
   const [isRotating, setIsRotating] = useState(false);
   const [currentStage, setCurrentStage] = useState(1);
   const [isPlayingMusic, setIsPlayingMusic] = useState(false);
+  console.log('isPlayingMusic', isPlayingMusic);
 
   useEffect(() => {
     if (isPlayingMusic) {
