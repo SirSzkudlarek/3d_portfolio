@@ -6,7 +6,7 @@ import Navbar from './components/Navbar';
 const App = () => {
   return (
     <main className="bg-gradient h-full">
-      <Router basename="/3d_portfolio/">
+      <Router basename="/">
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
